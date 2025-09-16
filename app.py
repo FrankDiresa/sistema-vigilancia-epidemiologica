@@ -247,14 +247,33 @@ def main():
                 color: #000000 !important;
             }
             div[data-testid="metric-container"] [data-testid="metric-container-label"] {
-                color: #333333 !important;
-                font-weight: 700 !important;
+                color: #000000 !important;
+                font-weight: 800 !important;
                 font-size: 14px !important;
             }
             div[data-testid="metric-container"] [data-testid="metric-container-value"] {
-                color: #0066cc !important;
+                color: #000000 !important;
                 font-weight: 900 !important;
                 font-size: 24px !important;
+            }
+            /* Títulos y etiquetas de métricas */
+            .metric-label, .metric-title {
+                color: #000000 !important;
+                font-weight: 800 !important;
+            }
+            /* TODOS los elementos de texto dentro de métricas - NEGRO PURO */
+            div[data-testid="metric-container"] * {
+                color: #000000 !important;
+            }
+            .stMetric * {
+                color: #000000 !important;
+            }
+            /* Valores específicos de métricas */
+            div[data-testid="metric-container"] span,
+            div[data-testid="metric-container"] p,
+            div[data-testid="metric-container"] div {
+                color: #000000 !important;
+                font-weight: 700 !important;
             }
             
             /* SELECTBOX y INPUTS con contraste */
@@ -330,6 +349,55 @@ def main():
                 border-color: #0066cc !important;
                 background-color: #e0e8ff !important;
             }
+            /* File uploader area con fondo negro - texto blanco */
+            .stFileUploader label {
+                background-color: #2c3e50 !important;
+                color: #ffffff !important;
+                font-weight: 700 !important;
+                padding: 10px !important;
+                border-radius: 8px !important;
+            }
+            /* Browse files button con fondo negro - texto blanco */
+            button[kind="secondary"] {
+                background-color: #2c3e50 !important;
+                color: #ffffff !important;
+                border: 2px solid #2c3e50 !important;
+                font-weight: 700 !important;
+            }
+            button[kind="secondary"]:hover {
+                background-color: #1a252f !important;
+                border-color: #1a252f !important;
+            }
+            
+            /* Texto "Drag and drop file here" - BLANCO y personalizado */
+            [data-testid="stFileUploader"] small {
+                color: #ffffff !important;
+                font-weight: 700 !important;
+            }
+            [data-testid="stFileUploader"] span {
+                color: #ffffff !important;
+                font-weight: 700 !important;
+            }
+            [data-testid="stFileUploader"] p {
+                color: #ffffff !important;
+                font-weight: 700 !important;
+            }
+            /* File uploader instructions específico */
+            .uploadedFileText {
+                color: #ffffff !important;
+                font-weight: 700 !important;
+            }
+            
+            /* Códigos RENIPRESS y otros textos específicos - NEGRO */
+            .stText {
+                color: #000000 !important;
+                font-weight: 700 !important;
+            }
+            /* Texto general - asegurar negro en modo claro */
+            div[data-testid="stText"] {
+                color: #000000 !important;
+                font-weight: 700 !important;
+            }
             
             /* TÍTULOS Y TEXTO con contraste máximo */
             h1, h2, h3, h4, h5, h6 {
@@ -354,11 +422,40 @@ def main():
                 color: #ffffff !important;
                 font-weight: 700 !important;
             }
+            /* Sidebar info boxes */
+            .stSidebar .stAlert {
+                background-color: #e6f3ff !important;
+                color: #000000 !important;
+                border: 2px solid #0066cc !important;
+                font-weight: 600 !important;
+            }
+            .stSidebar .stInfo {
+                background-color: #e6f3ff !important;
+                color: #000000 !important;
+                border: 2px solid #0066cc !important;
+                font-weight: 600 !important;
+            }
+            /* Contenido dentro de info boxes - NEGRO */
+            .stSidebar .stAlert p, .stSidebar .stAlert div, .stSidebar .stAlert span {
+                color: #000000 !important;
+                font-weight: 600 !important;
+            }
+            .stSidebar .stInfo p, .stSidebar .stInfo div, .stSidebar .stInfo span {
+                color: #000000 !important;
+                font-weight: 600 !important;
+            }
             
             /* FILTROS específicos */
             .stDateInput > div > div > input {
                 background-color: #ffffff !important;
                 color: #000000 !important;
+                border: 2px solid #999999 !important;
+                font-weight: 600 !important;
+            }
+            /* Inputs de fecha con fondo negro - texto blanco */
+            input[type="date"] {
+                background-color: #2c3e50 !important;
+                color: #ffffff !important;
                 border: 2px solid #999999 !important;
                 font-weight: 600 !important;
             }
@@ -380,6 +477,19 @@ def main():
                 font-weight: 600 !important;
             }
         </style>
+        <script>
+        // Cambiar texto del file uploader a español
+        setTimeout(function() {
+            const dragTexts = document.querySelectorAll('[data-testid="stFileUploader"] small, [data-testid="stFileUploader"] span');
+            dragTexts.forEach(function(element) {
+                if (element.textContent.includes('Drag and drop') || element.textContent.includes('drag and drop')) {
+                    element.textContent = 'Arrastre y suelte el archivo aquí';
+                    element.style.color = '#ffffff';
+                    element.style.fontWeight = '700';
+                }
+            });
+        }, 1000);
+        </script>
         """, unsafe_allow_html=True)
     
     st.title("📊 Sistema de Vigilancia Epidemiológica")
